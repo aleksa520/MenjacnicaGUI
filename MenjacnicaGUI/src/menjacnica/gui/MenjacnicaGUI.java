@@ -43,7 +43,7 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem mntmNewMenuItem_2;
 	private JMenu mnNewMenu_1;
 	private JScrollPane scrollPane;
-	private JTextPane textPane;
+	public static JTextPane textPane;
 	private JMenuItem mntmNewMenuItem_3;
 	private JScrollPane scrollPane_1;
 	private JTable table;
@@ -51,6 +51,7 @@ public class MenjacnicaGUI extends JFrame {
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
 	private JButton btnNewButton_2;
+	public MenjacnicaGUI gp;
 
 	/**
 	 * Launch the application.
@@ -268,6 +269,16 @@ public class MenjacnicaGUI extends JFrame {
 	private JButton getBtnNewButton() {
 		if (btnNewButton == null) {
 			btnNewButton = new JButton("Dodaj kurs");
+			btnNewButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+					DodajKursGUI dkp = 
+							new DodajKursGUI(gp);
+					
+					dkp.setVisible(true);
+					
+				}
+			});
 		}
 		return btnNewButton;
 	}
