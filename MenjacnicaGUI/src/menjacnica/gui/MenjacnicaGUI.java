@@ -271,12 +271,11 @@ public class MenjacnicaGUI extends JFrame {
 			btnNewButton = new JButton("Dodaj kurs");
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
-					DodajKursGUI dkp = 
-							new DodajKursGUI(gp);
-					
+
+					DodajKursGUI dkp = new DodajKursGUI(gp);
+
 					dkp.setVisible(true);
-					
+
 				}
 			});
 		}
@@ -286,6 +285,15 @@ public class MenjacnicaGUI extends JFrame {
 	private JButton getBtnNewButton_1() {
 		if (btnNewButton_1 == null) {
 			btnNewButton_1 = new JButton("Obrisi kurs");
+			btnNewButton_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+
+					ObrisiKursGUI dkp = new ObrisiKursGUI(gp);
+
+					dkp.setVisible(true);
+
+				}
+			});
 		}
 		return btnNewButton_1;
 	}
