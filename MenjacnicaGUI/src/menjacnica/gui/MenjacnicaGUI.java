@@ -24,6 +24,8 @@ import javax.swing.JPopupMenu;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 
 import javax.swing.table.DefaultTableModel;
@@ -73,10 +75,17 @@ public class MenjacnicaGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public MenjacnicaGUI() {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent arg0) {
+				exit();
+			}
+
+		});
 		setIconImage(Toolkit.getDefaultToolkit()
 				.getImage(MenjacnicaGUI.class.getResource("/icons/menjacnica-grk-promet-slike293.jpg")));
 		setTitle("Menjacnica");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 568, 323);
 		setJMenuBar(getMenuBar_1());
 		contentPane = new JPanel();

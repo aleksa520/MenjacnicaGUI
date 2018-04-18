@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class DodajKursGUI extends JFrame {
 
@@ -50,6 +51,7 @@ public class DodajKursGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public DodajKursGUI(MenjacnicaGUI gp) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DodajKursGUI.class.getResource("/icons/menjacnica-grk-promet-slike293.jpg")));
 		setResizable(false);
 		setTitle("Dodaj kurs");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JRadioButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class ObrisiKursGUI extends JFrame {
 
@@ -52,6 +53,7 @@ public class ObrisiKursGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public ObrisiKursGUI(MenjacnicaGUI gp) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ObrisiKursGUI.class.getResource("/icons/menjacnica-grk-promet-slike293.jpg")));
 		setResizable(false);
 		setTitle("Obrisi kurs");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -225,7 +227,7 @@ public class ObrisiKursGUI extends JFrame {
 						btnObrisi.setEnabled(false);
 				}
 			});
-			rdbtnZaistaObrisiKurs.setBounds(10, 190, 109, 23);
+			rdbtnZaistaObrisiKurs.setBounds(10, 190, 130, 23);
 		}
 		return rdbtnZaistaObrisiKurs;
 	}
