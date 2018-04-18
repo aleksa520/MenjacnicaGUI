@@ -10,11 +10,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JSlider;
+import java.awt.event.MouseMotionAdapter;
+import java.awt.event.MouseEvent;
 
 public class IzvrsiZamenuGUI extends JFrame {
 
@@ -30,9 +33,10 @@ public class IzvrsiZamenuGUI extends JFrame {
 	private JLabel lblVrstaTransakcije;
 	private JButton btnIzvrsiZamenu;
 	private JButton btnOdustani;
-	private JRadioButton rdbtnNewRadioButton;
-	private JRadioButton rdbtnNewRadioButton_1;
+	private JRadioButton Radio1;
+	private JRadioButton Radio2;
 	private JSlider slider;
+	ButtonGroup bgr = new ButtonGroup();
 
 	/**
 	 * Launch the application.
@@ -41,7 +45,7 @@ public class IzvrsiZamenuGUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					IzvrsiZamenuGUI frame = new IzvrsiZamenuGUI();
+					IzvrsiZamenuGUI frame = new IzvrsiZamenuGUI(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -53,11 +57,12 @@ public class IzvrsiZamenuGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public IzvrsiZamenuGUI() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(IzvrsiZamenuGUI.class.getResource("/icons/menjacnica-grk-promet-slike293.jpg")));
+	public IzvrsiZamenuGUI(MenjacnicaGUI gp) {
+		setIconImage(Toolkit.getDefaultToolkit()
+				.getImage(IzvrsiZamenuGUI.class.getResource("/icons/menjacnica-grk-promet-slike293.jpg")));
 		setResizable(false);
 		setTitle("Izvrsi zamenu");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 363, 274);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -74,9 +79,15 @@ public class IzvrsiZamenuGUI extends JFrame {
 		contentPane.add(getLblVrstaTransakcije());
 		contentPane.add(getBtnIzvrsiZamenu());
 		contentPane.add(getBtnOdustani());
-		contentPane.add(getRdbtnNewRadioButton());
-		contentPane.add(getRdbtnNewRadioButton_1());
+		contentPane.add(getRadio1());
+		contentPane.add(getRadio2());
 		contentPane.add(getSlider());
+		bgr.add(Radio2);
+		bgr.add(Radio1);
+		comboBox.addItem("EUR");
+		comboBox.addItem("USD");
+		comboBox.addItem("CHF");
+
 	}
 
 	private JLabel getLblKupovniKurs() {
@@ -86,6 +97,7 @@ public class IzvrsiZamenuGUI extends JFrame {
 		}
 		return lblKupovniKurs;
 	}
+
 	private JComboBox getComboBox() {
 		if (comboBox == null) {
 			comboBox = new JComboBox();
@@ -93,6 +105,7 @@ public class IzvrsiZamenuGUI extends JFrame {
 		}
 		return comboBox;
 	}
+
 	private JLabel getLblProdajniKurs() {
 		if (lblProdajniKurs == null) {
 			lblProdajniKurs = new JLabel("Prodajni kurs");
@@ -100,6 +113,7 @@ public class IzvrsiZamenuGUI extends JFrame {
 		}
 		return lblProdajniKurs;
 	}
+
 	private JLabel getLblValuta() {
 		if (lblValuta == null) {
 			lblValuta = new JLabel("Valuta");
@@ -107,22 +121,27 @@ public class IzvrsiZamenuGUI extends JFrame {
 		}
 		return lblValuta;
 	}
+
 	private JTextField getTextField() {
 		if (textField == null) {
 			textField = new JTextField();
+			textField.setEditable(false);
 			textField.setBounds(10, 30, 126, 20);
 			textField.setColumns(10);
 		}
 		return textField;
 	}
+
 	private JTextField getTextField_1() {
 		if (textField_1 == null) {
 			textField_1 = new JTextField();
+			textField_1.setEditable(false);
 			textField_1.setColumns(10);
 			textField_1.setBounds(220, 30, 127, 20);
 		}
 		return textField_1;
 	}
+
 	private JLabel getLblIznos() {
 		if (lblIznos == null) {
 			lblIznos = new JLabel("Iznos");
@@ -130,14 +149,17 @@ public class IzvrsiZamenuGUI extends JFrame {
 		}
 		return lblIznos;
 	}
+
 	private JTextField getTextField_2() {
 		if (textField_2 == null) {
 			textField_2 = new JTextField();
-			textField_2.setBounds(10, 96, 126, 20);
+			textField_2.setBounds(10, 93, 126, 20);
 			textField_2.setColumns(10);
+
 		}
 		return textField_2;
 	}
+
 	private JLabel getLblVrstaTransakcije() {
 		if (lblVrstaTransakcije == null) {
 			lblVrstaTransakcije = new JLabel("Vrsta transakcije");
@@ -145,47 +167,90 @@ public class IzvrsiZamenuGUI extends JFrame {
 		}
 		return lblVrstaTransakcije;
 	}
+
 	private JButton getBtnIzvrsiZamenu() {
 		if (btnIzvrsiZamenu == null) {
 			btnIzvrsiZamenu = new JButton("Izvrsi zamenu");
 			btnIzvrsiZamenu.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
+
+					String tekst = "";
+
+					if (Radio1.isSelected())
+						tekst = Radio1.getText();
+					else if (Radio2.isSelected())
+						tekst = Radio2.getText();
+
+					String a = MenjacnicaGUI.textPane.getText() + "\nIzvrsena je " + tekst + "" + " , valute "
+							+ comboBox.getSelectedItem() + " u iznosu od " + textField_2.getText();
+
+					MenjacnicaGUI.textPane.setText(a);
+					dispose();
+
 				}
 			});
 			btnIzvrsiZamenu.setBounds(21, 211, 138, 23);
 		}
 		return btnIzvrsiZamenu;
 	}
+
 	private JButton getBtnOdustani() {
 		if (btnOdustani == null) {
 			btnOdustani = new JButton("Odustani");
 			btnOdustani.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					dispose();
 				}
 			});
 			btnOdustani.setBounds(180, 211, 147, 23);
 		}
 		return btnOdustani;
 	}
-	private JRadioButton getRdbtnNewRadioButton() {
-		if (rdbtnNewRadioButton == null) {
-			rdbtnNewRadioButton = new JRadioButton("Kupovina");
-			rdbtnNewRadioButton.setBounds(190, 95, 109, 23);
+
+	private JRadioButton getRadio1() {
+		if (Radio1 == null) {
+			Radio1 = new JRadioButton("Kupovina");
+			Radio1.setSelected(true);
+			Radio1.setBounds(190, 95, 109, 23);
 		}
-		return rdbtnNewRadioButton;
+
+		return Radio1;
 	}
-	private JRadioButton getRdbtnNewRadioButton_1() {
-		if (rdbtnNewRadioButton_1 == null) {
-			rdbtnNewRadioButton_1 = new JRadioButton("Prodaja");
-			rdbtnNewRadioButton_1.setBounds(190, 129, 109, 23);
+
+	private JRadioButton getRadio2() {
+
+		if (Radio2 == null) {
+			Radio2 = new JRadioButton("Prodaja");
+			Radio2.setBounds(190, 129, 109, 23);
 		}
-		return rdbtnNewRadioButton_1;
+
+		return Radio2;
 	}
+
 	private JSlider getSlider() {
 		if (slider == null) {
 			slider = new JSlider();
-			slider.setBounds(21, 159, 306, 26);
+			slider.addMouseMotionListener(new MouseMotionAdapter() {
+				@Override
+				public void mouseDragged(MouseEvent arg0) {
+					String s = "" + slider.getValue();
+					textField_2.setText(s);
+				}
+
+				@Override
+				public void mouseMoved(MouseEvent e) {
+					String s = "" + slider.getValue();
+					textField_2.setText(s);
+				}
+			});
+			slider.setSnapToTicks(true);
+			slider.setPaintTicks(true);
+			slider.setPaintLabels(true);
+			slider.setMinorTickSpacing(5);
+			slider.setMajorTickSpacing(10);
+			slider.setBounds(21, 148, 306, 52);
 		}
 		return slider;
 	}
+
 }
