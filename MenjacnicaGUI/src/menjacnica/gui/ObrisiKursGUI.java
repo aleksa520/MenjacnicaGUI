@@ -53,7 +53,8 @@ public class ObrisiKursGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public ObrisiKursGUI(MenjacnicaGUI gp) {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(ObrisiKursGUI.class.getResource("/icons/menjacnica-grk-promet-slike293.jpg")));
+		setIconImage(Toolkit.getDefaultToolkit()
+				.getImage(ObrisiKursGUI.class.getResource("/icons/menjacnica-grk-promet-slike293.jpg")));
 		setResizable(false);
 		setTitle("Obrisi kurs");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

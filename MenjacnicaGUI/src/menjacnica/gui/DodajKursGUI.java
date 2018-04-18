@@ -51,7 +51,8 @@ public class DodajKursGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public DodajKursGUI(MenjacnicaGUI gp) {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(DodajKursGUI.class.getResource("/icons/menjacnica-grk-promet-slike293.jpg")));
+		setIconImage(Toolkit.getDefaultToolkit()
+				.getImage(DodajKursGUI.class.getResource("/icons/menjacnica-grk-promet-slike293.jpg")));
 		setResizable(false);
 		setTitle("Dodaj kurs");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -75,6 +76,7 @@ public class DodajKursGUI extends JFrame {
 		contentPane.add(getBtnNewButton());
 		contentPane.add(getBtnNewButton_1());
 	}
+
 	private JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel("Sifra");
@@ -82,6 +84,7 @@ public class DodajKursGUI extends JFrame {
 		}
 		return lblNewLabel;
 	}
+
 	private JLabel getLblNaziv() {
 		if (lblNaziv == null) {
 			lblNaziv = new JLabel("Naziv");
@@ -89,6 +92,7 @@ public class DodajKursGUI extends JFrame {
 		}
 		return lblNaziv;
 	}
+
 	private JTextField getTextFieldSifra() {
 		if (textFieldSifra == null) {
 			textFieldSifra = new JTextField();
@@ -97,6 +101,7 @@ public class DodajKursGUI extends JFrame {
 		}
 		return textFieldSifra;
 	}
+
 	private JTextField getTextFieldNaziv() {
 		if (textFieldNaziv == null) {
 			textFieldNaziv = new JTextField();
@@ -105,6 +110,7 @@ public class DodajKursGUI extends JFrame {
 		}
 		return textFieldNaziv;
 	}
+
 	private JLabel getLblProdajniKurs() {
 		if (lblProdajniKurs == null) {
 			lblProdajniKurs = new JLabel("Prodajni kurs");
@@ -112,6 +118,7 @@ public class DodajKursGUI extends JFrame {
 		}
 		return lblProdajniKurs;
 	}
+
 	private JLabel getLblKupovniKurs() {
 		if (lblKupovniKurs == null) {
 			lblKupovniKurs = new JLabel("Kupovni Kurs");
@@ -119,6 +126,7 @@ public class DodajKursGUI extends JFrame {
 		}
 		return lblKupovniKurs;
 	}
+
 	private JTextField getTextFieldProdajni() {
 		if (textFieldProdajni == null) {
 			textFieldProdajni = new JTextField();
@@ -127,6 +135,7 @@ public class DodajKursGUI extends JFrame {
 		}
 		return textFieldProdajni;
 	}
+
 	private JTextField getTextFieldKupovni() {
 		if (textFieldKupovni == null) {
 			textFieldKupovni = new JTextField();
@@ -135,6 +144,7 @@ public class DodajKursGUI extends JFrame {
 		}
 		return textFieldKupovni;
 	}
+
 	private JLabel getLblSrednjiKurs() {
 		if (lblSrednjiKurs == null) {
 			lblSrednjiKurs = new JLabel("Srednji kurs");
@@ -142,6 +152,7 @@ public class DodajKursGUI extends JFrame {
 		}
 		return lblSrednjiKurs;
 	}
+
 	private JLabel getLblSkraceniNaziv() {
 		if (lblSkraceniNaziv == null) {
 			lblSkraceniNaziv = new JLabel("Skraceni naziv");
@@ -149,6 +160,7 @@ public class DodajKursGUI extends JFrame {
 		}
 		return lblSkraceniNaziv;
 	}
+
 	private JTextField getTextFieldSrednji() {
 		if (textFieldSrednji == null) {
 			textFieldSrednji = new JTextField();
@@ -157,6 +169,7 @@ public class DodajKursGUI extends JFrame {
 		}
 		return textFieldSrednji;
 	}
+
 	private JTextField getTextFieldSkraceni() {
 		if (textFieldSkraceni == null) {
 			textFieldSkraceni = new JTextField();
@@ -165,34 +178,36 @@ public class DodajKursGUI extends JFrame {
 		}
 		return textFieldSkraceni;
 	}
+
 	private JButton getBtnNewButton() {
 		if (btnNewButton == null) {
 			btnNewButton = new JButton("Dodaj");
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
-					String a = MenjacnicaGUI.textPane.getText()+"\nNova valuta --> Naziv: "+textFieldNaziv.getText()+
-							" Skraceni naziv:"+textFieldSkraceni.getText()+
-							" Kupovni-Srednji-Prodajni: "+textFieldKupovni.getText()+"-"
-							+textFieldSrednji.getText()+"-"+textFieldProdajni.getText();
-					
+
+					String a = MenjacnicaGUI.textPane.getText() + "\nNova valuta --> Naziv: " + textFieldNaziv.getText()
+							+ " Skraceni naziv:" + textFieldSkraceni.getText() + " Kupovni-Srednji-Prodajni: "
+							+ textFieldKupovni.getText() + "-" + textFieldSrednji.getText() + "-"
+							+ textFieldProdajni.getText();
+
 					MenjacnicaGUI.textPane.setText(a);
 					dispose();
-					
+
 				}
 			});
 			btnNewButton.setBounds(10, 173, 146, 23);
 		}
 		return btnNewButton;
 	}
+
 	private JButton getBtnNewButton_1() {
 		if (btnNewButton_1 == null) {
 			btnNewButton_1 = new JButton("Odustani");
 			btnNewButton_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
+
 					dispose();
-					
+
 				}
 			});
 			btnNewButton_1.setBounds(166, 173, 143, 23);
